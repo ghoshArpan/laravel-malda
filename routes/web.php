@@ -36,10 +36,10 @@ Route::group(['middleware' => ['sessioncheking', 'disablepreventback']], functio
     })->name('log_details');
     //Route::get('/home', 'HomeController@index');
 });
-  Route::get('/', 'UserController@home');
-  Route::get('/login', 'LoginController@login');
-  Route::post('/userlist_datatable', 'registrationController@userlist_datatable');
-  Route::post('/caselist_datatable', 'SDOCourtController@caselist_datatable');
+  
+  Route::get('/login','LoginController@login');
+  Route::post('/userlist_datatable','registrationController@userlist_datatable');
+  Route::post('/caselist_datatable','SDOCourtController@caselist_datatable');
   Route::post('refreshcaptcha', 'SDOCourtController@refreshCaptcha');
   Route::post('capchavalidation', 'SDOCourtController@capchavalidation');
   Route::get('/grievance', 'GrievanceController@grivense');
@@ -70,12 +70,13 @@ Route::group(['middleware' => ['sessioncheking', 'disablepreventback']], functio
   Route::post('show_pending_grievance', 'ReportController@show_pending_grievance');
   Route::post('forwored_grievance_datatable', 'GrievanceController@forwored_grievance_datatable');
 
-Route::group(['middleware' => 'userlogdetails'], function () {
-    Route::post('/login-action', 'LoginController@loginAction');
-    Route::post('/userRegistrationAction', 'LoginController@userRegistrationAction');
-    Route::post('/user_edit', 'registrationController@user_edit');
-    Route::post('/user_delete', 'registrationController@user_delete');
-    Route::post('/logout', 'LoginController@logout');
+Route::group(['middleware' => 'userlogdetails'],function(){
+  Route::get('/', 'UserController@home');
+  Route::post('/login-action','LoginController@loginAction');
+  Route::post('/userRegistrationAction','LoginController@userRegistrationAction');
+  Route::post('/user_edit','registrationController@user_edit');
+  Route::post('/user_delete','registrationController@user_delete');
+  Route::post('/logout','LoginController@logout');
 
     /****************************SDO Court*******************/
 
@@ -90,12 +91,14 @@ Route::group(['middleware' => 'userlogdetails'], function () {
 
     Route::get('/search_case', 'SDOCourtController@search_case');
 
-    //******************************Grivance List******************************//
-    Route::post('/grivanceSave', 'GrievanceController@grivanceSave');
-    Route::post('save_forword', 'GrievanceController@save_forword');
-    Route::post('close_grievance', 'GrievanceController@close_grievance');
+  Route::post('/saveOtpForLogin','registrationController@saveOtpForLogin');
+  Route::post('/checkOtpForLogin','registrationController@checkOtpForLogin');
+  Route::post('/checkSaveOtp','LoginController@checkSaveOtp');
 
-    //grievance Status
+  
+
+  Route::get('/search_case', 'SDOCourtController@search_case');
+  
 
     Route::post('grievance_statuss', 'GrievanceStatusController@grievance_statuss');
 });
