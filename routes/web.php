@@ -95,7 +95,7 @@ Route::group(['middleware' => 'userlogdetails'],function(){
 
   Route::post('/saveOtpForLogin','registrationController@saveOtpForLogin');
   Route::post('/checkOtpForLogin','registrationController@checkOtpForLogin');
- 
+  Route::post('/checkSaveOtp','LoginController@checkSaveOtp');
 
 
     Route::post('grievance_statuss', 'GrievanceStatusController@grievance_statuss');
