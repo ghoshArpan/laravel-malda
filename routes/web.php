@@ -83,22 +83,20 @@ Route::group(['middleware' => 'userlogdetails'],function(){
     Route::post('/save_case', 'SDOCourtController@save_case');
     Route::post('/case_edit', 'SDOCourtController@case_edit');
     Route::post('/case_delete', 'SDOCourtController@case_delete');
+    Route::post('/grivanceSave', 'GrievanceController@grivanceSave');
+    Route::post('save_forword', 'GrievanceController@save_forword');
+    Route::post('close_grievance', 'GrievanceController@close_grievance');
 
     /****************************Change Password*******************/
 
-    Route::post('/saveOtpForLogin', 'registrationController@saveOtpForLogin');
-    Route::post('/checkOtpForLogin', 'registrationController@checkOtpForLogin');
+   
 
     Route::get('/search_case', 'SDOCourtController@search_case');
 
   Route::post('/saveOtpForLogin','registrationController@saveOtpForLogin');
   Route::post('/checkOtpForLogin','registrationController@checkOtpForLogin');
-  Route::post('/checkSaveOtp','LoginController@checkSaveOtp');
+ 
 
-  
-
-  Route::get('/search_case', 'SDOCourtController@search_case');
-  
 
     Route::post('grievance_statuss', 'GrievanceStatusController@grievance_statuss');
 });
