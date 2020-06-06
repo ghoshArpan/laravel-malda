@@ -75,6 +75,7 @@ class GrievanceController extends Controller
                 // 'attatchment.max' => 'Upload Document Maximum file Size should be 1 MB.',
 
             ]);
+        }
             if ($request->attatchment != 'undefined') {
                 $this->validate($request, [
                     'attatchment' => 'nullable|mimes:pdf|max:1024',
@@ -84,7 +85,7 @@ class GrievanceController extends Controller
                     'attatchment.max'   => 'Upload Document Maximum file Size should be 1 MB.',
                 ]);
             }
-        }
+       
 
         try {
             $n = random_int(1111111111, 9999999999);
