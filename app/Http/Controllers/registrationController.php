@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\tbl_mobile_verify;
 use App\tbl_user;
 use App\tbl_login_checking;
+use App\tbl_user_log_details;
 use DB;
 use Illuminate\Http\Request;
+use Closure;
+use Session;
 
 class registrationController extends Controller
 {
@@ -355,6 +358,16 @@ class registrationController extends Controller
                 session(['user_type' =>  $result->user_type]);
             //session(['expire' => $now + (60 * 1)]);
             } else {
+
+                $userDetails = new tbl_user_log_details();
+                $userDetails->userCode = '0';
+                $browser = $_SERVER['HTTP_USER_AGENT'];
+                $userDetails->sessionId = Session::getId();
+                $userDetails->userIp = $request->ip();
+                $userDetails->visitedPage = \Request::getRequestUri()."/Otp Missmatch";
+                $userDetails->description = json_encode($request->all());
+                $userDetails->browser = $browser;
+                $userDetails->save();
                 $response = [
                     'status' => 2, 'mob'=> $mobile_no
                 ];
